@@ -10,10 +10,19 @@ import { uploadfile } from "./controller/fileUpload.controller.js";
 import connectDB from './db/index.js';
 import userRouter from './routes/user.route.js';
 import ErrorHandler, { ApiError } from "./utils/apiError.js";
+import path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Use __dirname as usual
 
 
 
 const app = express()
+app.use(express.static(path.resolve(__dirname, 'dist')));
+// express.static(path.resolve(__dirname, 'dist'))
 
 app.use(cors())
 app.use(express.json())
